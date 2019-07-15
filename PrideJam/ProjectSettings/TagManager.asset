@@ -4,13 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
+  - Red
   - Purple
   - Blue
-  - Green
-  - Yellow
   - Orange
-  - Red
+  - Yellow
+  - Green
   layers:
   - Default
   - TransparentFX
@@ -21,9 +20,9 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
+  - Background
+  - Level
+  - Player
   - 
   - 
   - 
