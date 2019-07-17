@@ -67,38 +67,51 @@ public class BoxColorTester : MonoBehaviour
 
     private void TriggerPurple()
     {
-        StackPlatform.transform.Translate(0, -1, 0);
+        //StackPlatform.transform.Translate(0, -1, 0);
+        //transform.localPosition = new Vector3(0, 0, 0);
+        BlockList[0].transform.localPosition = new Vector3(-32.0f, -9.0f, 0);
+        BlockList[0].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         desiredBlock.CurrentDesiredBlock = "Blue";
     }
 
     private void TriggerBlue()
     {
-        StackPlatform.transform.Translate(0, -1, 0);
+        //StackPlatform.transform.Translate(0, -1, 0);
+        BlockList[1].transform.localPosition = new Vector3(-28.0f, -9.0f, 0);
+        BlockList[1].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         desiredBlock.CurrentDesiredBlock = "Green";
     }
 
     private void TriggerGreen()
     {
-        StackPlatform.transform.Translate(0, -1, 0);
+        //StackPlatform.transform.Translate(0, -1, 0);
+        BlockList[2].transform.localPosition = new Vector3(-24.0f, -9.0f, 0);
+        BlockList[2].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         desiredBlock.CurrentDesiredBlock = "Yellow";
     }
 
     private void TriggerYellow()
     {
-        StackPlatform.transform.Translate(0, -1, 0);
+        //StackPlatform.transform.Translate(0, -1, 0);
+        BlockList[3].transform.localPosition = new Vector3(-20.0f, -9.0f, 0);
+        BlockList[3].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         desiredBlock.CurrentDesiredBlock = "Orange";
     }
 
     private void TriggerOrange()
     {
-        StackPlatform.transform.Translate(0, -1, 0);
+        //StackPlatform.transform.Translate(0, -1, 0);
+        BlockList[4].transform.localPosition = new Vector3(-16.0f, -9.0f, 0);
+        BlockList[4].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         desiredBlock.CurrentDesiredBlock = "Red";
     }
 
     private void TriggerRed()
     {
         // this will reset the stack platform object to its original position so we will need to change this based on where we decide to put it 
-        StackPlatform.transform.position = new Vector3(0, -4.5f, 0);
+        //StackPlatform.transform.position = new Vector3(0, -4.5f, 0);
+        BlockList[5].transform.localPosition = new Vector3(-12.0f, -9.0f, 0);
+        BlockList[5].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         desiredBlock.CurrentDesiredBlock = "Purple";
         ResetLevel();
     }
