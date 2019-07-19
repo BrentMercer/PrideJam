@@ -4,5 +4,11 @@ using UnityEngine;
 
 public class CurrentHomeLocation : MonoBehaviour
 {
-    public Vector3 HomeLocation;
+    public Vector3 homeLocation;
+
+    private void Start()
+    {
+        var blockLocation = GetComponent<Transform>();
+        homeLocation = blockLocation.localPosition;
+    }
 }

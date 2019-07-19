@@ -1,15 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class BoxColorTester : MonoBehaviour
 {
-    
+
     public GameObject StackPlatform;
     public Text OnScreenTime;
     public DesiredBlock desiredBlock;
     public GameTimer gameTimer;
     public GameObject LevelPassedPanel;
     public GameObject GameOverPanel;
+    public AudioSource audioCorrect;
+    public AudioSource audioIncorrect;
+    public AudioSource audioWinLevel;
     private string Block;
     private int CurrentLevel;
 
@@ -30,6 +36,13 @@ public class BoxColorTester : MonoBehaviour
             ResetGame();
         }
     }
+
+    private IEnumerator levelEndDelay()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -61,7 +74,8 @@ public class BoxColorTester : MonoBehaviour
         }
         else 
         {
-            other.transform.localPosition = other.GetComponent<CurrentHomeLocation>().HomeLocation;
+            other.transform.localPosition = other.GetComponent<CurrentHomeLocation>().homeLocation;
+            audioIncorrect.Play();
         }
     }
 
@@ -71,6 +85,7 @@ public class BoxColorTester : MonoBehaviour
         //transform.localPosition = new Vector3(0, 0, 0);
         BlockList[0].transform.localPosition = new Vector3(-32.0f, -9.0f, 0);
         BlockList[0].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        audioCorrect.Play();
         desiredBlock.CurrentDesiredBlock = "Blue";
     }
 
@@ -79,6 +94,7 @@ public class BoxColorTester : MonoBehaviour
         //StackPlatform.transform.Translate(0, -1, 0);
         BlockList[1].transform.localPosition = new Vector3(-28.0f, -9.0f, 0);
         BlockList[1].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        audioCorrect.Play();
         desiredBlock.CurrentDesiredBlock = "Green";
     }
 
@@ -87,6 +103,7 @@ public class BoxColorTester : MonoBehaviour
         //StackPlatform.transform.Translate(0, -1, 0);
         BlockList[2].transform.localPosition = new Vector3(-24.0f, -9.0f, 0);
         BlockList[2].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        audioCorrect.Play();
         desiredBlock.CurrentDesiredBlock = "Yellow";
     }
 
@@ -95,6 +112,7 @@ public class BoxColorTester : MonoBehaviour
         //StackPlatform.transform.Translate(0, -1, 0);
         BlockList[3].transform.localPosition = new Vector3(-20.0f, -9.0f, 0);
         BlockList[3].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        audioCorrect.Play();
         desiredBlock.CurrentDesiredBlock = "Orange";
     }
 
@@ -103,6 +121,7 @@ public class BoxColorTester : MonoBehaviour
         //StackPlatform.transform.Translate(0, -1, 0);
         BlockList[4].transform.localPosition = new Vector3(-16.0f, -9.0f, 0);
         BlockList[4].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        audioCorrect.Play();
         desiredBlock.CurrentDesiredBlock = "Red";
     }
 
@@ -113,7 +132,9 @@ public class BoxColorTester : MonoBehaviour
         BlockList[5].transform.localPosition = new Vector3(-12.0f, -9.0f, 0);
         BlockList[5].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         desiredBlock.CurrentDesiredBlock = "Purple";
-        ResetLevel();
+        audioWinLevel.Play();
+        StartCoroutine(levelEndDelay());
+        //ResetLevel();
     }
 
     public List<GameObject> BlockList;
@@ -148,7 +169,7 @@ public class BoxColorTester : MonoBehaviour
             
             CurrentLocation = Random.Range(0, LocationListLength);
             Debug.Log("LocationList = " + LocationList[CurrentLocation]);
-            GameObject.GetComponent<CurrentHomeLocation>().HomeLocation = LocationList[CurrentLocation];
+            GameObject.GetComponent<CurrentHomeLocation>().homeLocation = LocationList[CurrentLocation];
             GameObject.transform.position = LocationList[CurrentLocation];
             UsedLocationList.Add(LocationList[CurrentLocation]);
             LocationList.Remove(LocationList[CurrentLocation]);
